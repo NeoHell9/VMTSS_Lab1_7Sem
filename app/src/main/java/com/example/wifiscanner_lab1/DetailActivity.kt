@@ -22,10 +22,10 @@ class DetailActivity : AppCompatActivity() {
         val items = listOf(
             "SSID: $ssid",
             "BSSID: $bssid",
-            "Уровень сигнала: $level dBm (${signalDescription(level)})",
-            "Частота: $freq МГц",
-            "Шифрование: ${parseEncryption(caps)}",
-            "Технологии: ${parseTechnologies(caps)}"
+            "Signal level: $level dBm (${signalDescription(level)})",
+            "Frequency: $freq МГц",
+            "Encryption: ${parseEncryption(caps)}",
+            "Technologies: ${parseTechnologies(caps)}"
         )
 
         // Находим ListView и устанавливаем адаптер
@@ -48,7 +48,7 @@ class DetailActivity : AppCompatActivity() {
         caps.contains("WPA2") -> "WPA2"
         caps.contains("WPA")  -> "WPA"
         caps.contains("WEP")  -> "WEP"
-        else -> "Открытая (без шифрования)"
+        else -> "Open"
     }
 
     // Извлекаем поддерживаемые технологии из квадратных скобок: [ESS][WPS] -> ESS, WPS

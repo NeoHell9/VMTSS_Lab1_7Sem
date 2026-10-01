@@ -34,8 +34,6 @@ class MainActivity : AppCompatActivity() {
                 val success = intent.getBooleanExtra(WifiManager.EXTRA_RESULTS_UPDATED, false)
                 if (success) {
                     refreshList()
-                } else {
-                    Toast.makeText(context, "Scan Failed", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -116,10 +114,10 @@ class MainActivity : AppCompatActivity() {
     private fun doScan() {
         val started = wifiManager.startScan()
         if (!started) {
-            Toast.makeText(this, "Scan denied, using previous results",
+            Toast.makeText(this, "Limited to scan again. Updating using system cache.",
                 Toast.LENGTH_SHORT).show()
-            refreshList()
         }
+        refreshList()
     }
 
     @SuppressLint("MissingPermission")
