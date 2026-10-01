@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                 if (success) {
                     refreshList()
                 } else {
-                    Toast.makeText(context, "Сканирование не удалось", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Scan Failed", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
             grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             doScan()
         } else {
-            Toast.makeText(this, "Без разрешения геолокации сканирование невозможно",
+            Toast.makeText(this, "Cannot scan without geolocation permission",
                 Toast.LENGTH_LONG).show()
         }
     }
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
     private fun doScan() {
         val started = wifiManager.startScan()
         if (!started) {
-            Toast.makeText(this, "Сканирование отклонено, берём прошлые результаты",
+            Toast.makeText(this, "Scan denied, using previous results",
                 Toast.LENGTH_SHORT).show()
             refreshList()
         }
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
     private fun refreshList() {
         scanResults.clear()
         scanResults.addAll(wifiManager.scanResults)
-        val names = scanResults.map { it.SSID.ifEmpty { "<скрытая сеть>" } }
+        val names = scanResults.map { it.SSID.ifEmpty { "<Hidden network>" } }
         adapter.clear()
         adapter.addAll(names)
         adapter.notifyDataSetChanged()
